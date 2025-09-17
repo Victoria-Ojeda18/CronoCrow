@@ -1,0 +1,12 @@
+back/
+├── app.py                  → Punto de entrada
+├── models.py               → Modelos de la base de datos
+├── routes/                 → Rutas de la API
+│   ├── auth.py
+│   ├── empleados.py
+│   ├── vacaciones.py
+│   └── asistencia.py
+├── config.py               → Configuración (JWT, DB, etc.)
+├── requirements.txt        → Dependencias
+└── instance/
+    └── cronocrown.db       → Base de datos SQLite (se crea sola)
