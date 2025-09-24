@@ -8,44 +8,44 @@ Nació de una necesidad real: un bar en San Martín de los Andes con 15 empleado
 
 ---
 
-## 🚀 Antecedentes
+##  Antecedentes
 
 No se encontraron aplicaciones similares en el mercado que se enfoquen específicamente en la **gestión simple y económica para pequeños empleadores** (gastronomía, comercios, fábricas, etc.). Los sistemas existentes suelen ser costosos, complejos y requieren mantenimiento caro. CronoCrown busca llenar ese vacío con una solución **accesible, funcional y fácil de usar**.
 
 ---
 
-## 💡 Justificación
+##  Justificación
 
 La gestión manual de horarios, vacaciones y asistencia es ineficiente y propensa a errores. Con CronoCrown:
 
-- ✅ Se elimina el uso del papel.
-- ✅ Se reduce el riesgo de pérdida de información.
-- ✅ Se mejora la comunicación entre empleador y empleados.
-- ✅ Se ahorra tiempo valioso en tareas administrativas.
-- ✅ Se facilita la toma de decisiones con filtros y reportes.
+-  Se elimina el uso del papel.
+-  Se reduce el riesgo de pérdida de información.
+-  Se mejora la comunicación entre empleador y empleados.
+-  Se ahorra tiempo valioso en tareas administrativas.
+-  Se facilita la toma de decisiones con filtros y reportes.
 
 Ideal para rubros como **gastronomía, retail, talleres, fábricas pequeñas**, donde la organización digital suele ser escasa o inexistente.
 
 ---
 
-## 🎯 Objetivos
+##  Objetivos
 
 ### Objetivo General
 Desarrollar una aplicación móvil que permita a los empleadores gestionar digitalmente a su personal, reemplazando los métodos manuales y mejorando la eficiencia operativa.
 
 ### Objetivos Específicos
-- ✅ Gestionar empleados: alta, edición y eliminación de datos personales y laborales.
-- ✅ Asignar y visualizar días libres y vacaciones.
-- ✅ Registrar y controlar horarios de entrada y salida.
-- ✅ Implementar un sistema de notificaciones automáticas (ej: recordatorios, aprobaciones).
-- ✅ Permitir a los empleados solicitar días libres/vacaciones y ver su estado.
-- ✅ Filtrar empleados por fecha, turno, ausencias, etc.
-- ✅ Diseñar una interfaz intuitiva y optimizada para móviles.
-- ✅ Garantizar seguridad y privacidad de los datos.
+-  Gestionar empleados: alta, edición y eliminación de datos personales y laborales.
+-  Asignar y visualizar días libres y vacaciones.
+-  Registrar y controlar horarios de entrada y salida.
+-  Implementar un sistema de notificaciones automáticas (ej: recordatorios, aprobaciones).
+-  Permitir a los empleados solicitar días libres/vacaciones y ver su estado.
+-  Filtrar empleados por fecha, turno, ausencias, etc.
+-  Diseñar una interfaz intuitiva y optimizada para móviles.
+-  Garantizar seguridad y privacidad de los datos.
 
 ---
 
-## 👥 Investigación de Usuario
+##  Investigación de Usuario
 
 **Cliente/Usuario Principal:** Encargado de un bar en San Martín de los Andes (calle Belgrano), con 10 años de trayectoria y aproximadamente 15 empleados (12 fijos + eventuales).
 
@@ -53,14 +53,14 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 > “Se me complica organizar a los empleados, nunca están claras las fechas de vacaciones o días libres, y pierdo mucho tiempo anotando en papel.”
 
 **Entrevistas y cuestionarios:**
-- 📝 [Formulario de entrevista](https://docs.google.com/forms/d/e/1FAIpQLScde5NQWWhJJiBo_296RvrbftP-S4A0v1T2apNEA9k_Z0k3qQ/viewform?usp=dialog)
-- 📊 [Respuestas del cliente](https://docs.google.com/spreadsheets/d/14OlmUTTnjMYfy_aPgV9wXwl2RkEjDCPgfC6vm3Qn11o/edit?usp=sharing)
+-  [Formulario de entrevista](https://docs.google.com/forms/d/e/1FAIpQLScde5NQWWhJJiBo_296RvrbftP-S4A0v1T2apNEA9k_Z0k3qQ/viewform?usp=dialog)
+-  [Respuestas del cliente](https://docs.google.com/spreadsheets/d/14OlmUTTnjMYfy_aPgV9wXwl2RkEjDCPgfC6vm3Qn11o/edit?usp=sharing)
 
 ---
 
-## 🧩 Requisitos Funcionales
+##  Requisitos Funcionales
 
-### 👔 Para el Empleador
+###  Para el Empleador
 - Agregar empleados al sistema con datos personales y laborales.
 - Asignar días libres y vacaciones.
 - Consultar historial de ausencias por empleado.
@@ -70,7 +70,7 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 - Gestionar permisos (vista restringida por rol).
 - Filtrar empleados por fecha, turno, vacaciones, etc.
 
-### 👷 Para el Empleado
+###  Para el Empleado
 - Ver sus días libres y vacaciones asignados.
 - Registrar su entrada y salida diaria.
 - Consultar historial de asistencia.
@@ -80,7 +80,7 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 
 ---
 
-## ⚙️ Requisitos No Funcionales
+##  Requisitos No Funcionales
 
 ### Usabilidad
 - Interfaz intuitiva y simple.
@@ -102,7 +102,7 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 
 ---
 
-## 💰 Factibilidad Económica
+##  Factibilidad Económica
 
 | Concepto               | Costo Estimado |
 |------------------------|----------------|
@@ -116,16 +116,16 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 
 ---
 
-## 🛠️ Factibilidad Operativa
+##  Factibilidad Operativa
 
-✅ Totalmente viable. El cliente ya usa herramientas digitales básicas (Google Forms), lo que facilita la adopción.  
-✅ Los empleados mostraron interés en usar una app para gestionar sus solicitudes.  
-✅ La app está pensada para funcionar desde el celular, sin necesidad de PC ni conocimientos técnicos.  
-✅ El mantenimiento es bajo y escalable.
+ Totalmente viable. El cliente ya usa herramientas digitales básicas (Google Forms), lo que facilita la adopción.  
+ Los empleados mostraron interés en usar una app para gestionar sus solicitudes.  
+ La app está pensada para funcionar desde el celular, sin necesidad de PC ni conocimientos técnicos.  
+ El mantenimiento es bajo y escalable.
 
 ---
 
-## 📱 Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - **Frontend:** React Native + Expo
 - **Backend:** Firebase (Auth, Firestore, Cloud Functions, FCM)
@@ -133,7 +133,3 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 - **Diseño UI:** React Native Paper / NativeBase
 - **Offline:** AsyncStorage + sincronización diferida
 - **Publicación:** App Store + Google Play Store
-
----
-
-## 📂 Estructura del Proyecto (Próximamente)

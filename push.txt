@@ -1,3 +1,3 @@
-git remote add origin https://github.com/Victoria-Ojeda18/CronoCrow.git
+git commit -m "Commit"
 git branch -M main
 git push -u origin main
