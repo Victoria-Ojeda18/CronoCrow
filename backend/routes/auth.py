@@ -1,34 +1,9 @@
-# routes/auth.py
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token
-from models import db, Usuario
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from models import Usuario, db
+from datetime import timedelta
 
 auth_bp = Blueprint('auth', __name__)
-
-@auth_bp.route('/register', methods=['POST'])
-def register():
-    data = request.get_json()
-    correo = data.get('correo')
-    contrasena = data.get('contrasena')
-    rol = data.get('rol', 'empleado')
-    dni = data.get('dni')
-
-    if not correo or not contrasena or not dni:
-        return jsonify({"error": "Faltan datos"}), 400
-
-    if Usuario.query.filter_by(correo=correo).first():
-        return jsonify({"error": "Correo ya existe"}), 400
-
-    nuevo_usuario = Usuario(
-        correo=correo,
-        contrasena=contrasena,
-        rol_id=1 if rol == 'empleador' else 2,  # 1=empleador, 2=empleado
-        dni=dni
-    )
-    db.session.add(nuevo_usuario)
-    db.session.commit()
-
-    return jsonify({"msg": "Usuario creado"}), 201
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
@@ -37,8 +12,29 @@ def login():
     contrasena = data.get('contrasena')
 
     usuario = Usuario.query.filter_by(correo=correo).first()
-    if not usuario or not usuario.check_password(contrasena):
-        return jsonify({"error": "Credenciales inválidas"}), 401
 
-    access_token = create_access_token(identity={'id': usuario.id, 'rol': usuario.rol.nombre})
-    return jsonify(access_token=access_token), 200
+    if usuario and usuario.check_password(contrasena):
+        access_token = create_access_token(identity=usuario.id, expires_delta=timedelta(days=1))
+        return jsonify({
+            'access_token': access_token,
+            'rol': usuario.rol.nombre,
+            'empleado_id': usuario.empleado_id
+        }), 200
+
+    return jsonify({'error': 'Credenciales inválidas'}), 401
+
+@auth_bp.route('/me', methods=['GET'])
+@jwt_required()
+def me():
+    current_user_id = get_jwt_identity()
+    usuario = Usuario.query.get(current_user_id)
+    if not usuario:
+        return jsonify({'error': 'Usuario no encontrado'}), 404
+
+    return jsonify({
+        'id': usuario.id,
+        'correo': usuario.correo,
+        'rol': usuario.rol.nombre,
+        'empleado_id': usuario.empleado_id,
+        'nombre_empleado': usuario.empleado.nombre if usuario.empleado else None
+    }), 200

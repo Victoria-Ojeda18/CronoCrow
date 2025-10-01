@@ -1,4 +1,3 @@
-# models.py
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from datetime import datetime
@@ -23,6 +22,9 @@ class Empleado(db.Model):
     activo = db.Column(db.Boolean, default=True)
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # Relación uno a uno con Usuario
+    usuario = db.relationship('Usuario', back_populates='empleado', uselist=False)
+
 class Usuario(db.Model):
     __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True)
@@ -34,7 +36,7 @@ class Usuario(db.Model):
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
 
     rol = db.relationship('Rol', backref='usuarios')
-    empleado = db.relationship('Empleado', backref='usuario', uselist=False)
+    empleado = db.relationship('Empleado', back_populates='usuario', uselist=False)
 
     def set_password(self, password):
         self.contrasena = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -47,7 +49,7 @@ class DiaLibre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleados.id'), nullable=False)
     fecha = db.Column(db.Date, nullable=False)
-    tipo = db.Column(db.String(20), default='semanal')
+    tipo = db.Column(db.String(20), default='semanal')  # semanal, especial, etc.
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
 
     empleado = db.relationship('Empleado', backref='dias_libres')
@@ -60,7 +62,7 @@ class Vacacion(db.Model):
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleados.id'), nullable=False)
     fecha_inicio = db.Column(db.Date, nullable=False)
     fecha_fin = db.Column(db.Date, nullable=False)
-    estado = db.Column(db.String(20), default='pendiente')
+    estado = db.Column(db.String(20), default='pendiente')  # pendiente, aprobada, rechazada
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
 
     empleado = db.relationship('Empleado', backref='vacaciones')
@@ -82,10 +84,10 @@ class Solicitud(db.Model):
     __tablename__ = 'solicitudes'
     id = db.Column(db.Integer, primary_key=True)
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleados.id'), nullable=False)
-    tipo = db.Column(db.String(20), nullable=False)  # 'vacaciones', 'dia_libre', etc.
+    tipo = db.Column(db.String(20), nullable=False)  # 'vacaciones', 'dia_libre'
     fecha_inicio = db.Column(db.Date, nullable=False)
-    fecha_fin = db.Column(db.Date)
-    estado = db.Column(db.String(20), default='pendiente')
+    fecha_fin = db.Column(db.Date)  # opcional para día libre
+    estado = db.Column(db.String(20), default='pendiente')  # pendiente, aprobada, rechazada
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
 
     empleado = db.relationship('Empleado', backref='solicitudes')
