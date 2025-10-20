@@ -132,4 +132,4 @@ Desarrollar una aplicación móvil que permita a los empleadores gestionar digit
 - **Gestión de estado:** Context API o Redux (opcional)
 - **Diseño UI:** React Native Paper / NativeBase
 - **Offline:** AsyncStorage + sincronización diferida
-- **Publicación:** App Store + Google Play Store
+- **Publicación:** app Store + Google Play Store
