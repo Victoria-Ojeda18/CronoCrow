@@ -7,14 +7,29 @@ router = APIRouter()
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 @router.post("/login")
-def login(data: LoginRequest):  # ← Nombre explícito + tipo Pydantic
+def login(data: LoginRequest):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
             cursor.execute("SELECT id, email, password_hash, rol FROM usuarios WHERE email = %s", (data.email,))
             user = cursor.fetchone()
         
-        if not user or not pwd_context.verify(data.password, user["password_hash"]):
+        if not user:
+            print("❌ Usuario no encontrado")
+            raise HTTPException(status_code=401, detail="Credenciales inválidas")
+        
+        stored_hash = user["password_hash"]
+        input_password = data.password
+
+        print(f"📧 Email: {data.email}")
+        print(f"🔒 Hash en DB: {stored_hash}")
+        print(f"🔑 Contraseña ingresada: '{input_password}'")
+        print(f"📏 Longitud hash: {len(stored_hash)}")
+
+        is_valid = pwd_context.verify(input_password, stored_hash)
+        print(f"✅ Verificación: {is_valid}")
+
+        if not is_valid:
             raise HTTPException(status_code=401, detail="Credenciales inválidas")
         
         return {

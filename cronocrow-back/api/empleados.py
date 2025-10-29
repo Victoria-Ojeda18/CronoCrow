@@ -54,3 +54,44 @@ def agregar_empleado(empleado: UsuarioCreate):
         return nuevo_empleado
     finally:
         conn.close()
+        
+# api/empleados.py (agrega al final del archivo)
+
+@router.get("/")
+def listar_empleados(empleador_id: int):
+    """
+    Lista todos los empleados de un empleador.
+    """
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Validar que el empleador exista
+            cursor.execute("SELECT id FROM usuarios WHERE id = %s AND rol = 'empleador'", (empleador_id,))
+            if not cursor.fetchone():
+                raise HTTPException(status_code=400, detail="Empleador no válido")
+
+            # Obtener empleados
+            cursor.execute("""
+                SELECT 
+                    id, nombre, apellido, telefono, email, 
+                    fecha_nacimiento,
+                    categoria as rubro,
+                    -- Nota: edad, experiencia, faltas, asistencias, francos
+                    -- no están en tu tabla actual. 
+                    -- Si los necesitas, deberás agregarlos a la tabla.
+                    'Lunes, Martes' as francos
+                FROM usuarios 
+                WHERE empleador_id = %s AND rol = 'empleado'
+            """, (empleador_id,))
+            empleados = cursor.fetchall()
+
+            # Calcular asistencias y faltas (simulado por ahora)
+            for emp in empleados:
+                emp["edad"] = "30"  # ← temporal
+                emp["experiencia"] = "5"  # ← temporal
+                emp["faltas"] = "2"
+                emp["asistencias"] = "118"
+
+        return {"empleados": empleados}
+    finally:
+        conn.close()

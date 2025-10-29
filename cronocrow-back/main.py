@@ -15,7 +15,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# main.py
+import api.empleador as empleador_routes  # ← agrega esta línea
 
+app.include_router(empleador_routes.router, prefix="/api/empleador")  # ← agrega esta línea
 app.include_router(auth_routes.router, prefix="/api/auth")
 app.include_router(asistencia_routes.router, prefix="/api/asistencia")
 app.include_router(empleados_routes.router, prefix="/api/empleados")
